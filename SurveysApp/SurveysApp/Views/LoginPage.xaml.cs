@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SurveysApp.ViewModels;
+using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,10 +20,10 @@ namespace SurveysApp.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
             var loggedin = Preferences.Get("loggedIn", false);
             if (loggedin)
-                await Shell.Current.GoToAsync($"//{nameof(SurveyMainPage)}"); 
+                await Shell.Current.GoToAsync($"//{nameof(SurveyMainPage)}");
+
         }
          
 
