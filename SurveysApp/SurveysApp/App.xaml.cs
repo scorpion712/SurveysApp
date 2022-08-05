@@ -1,6 +1,7 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using StoreApp.WebServices;
+using SurveysApp.Services;
+using SurveysApp.Services.Interfaces; 
+using Xamarin.Forms; 
 
 namespace SurveysApp
 {
@@ -10,7 +11,12 @@ namespace SurveysApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            #region Dependencies
+            DependencyService.Register<IHttpClientAccess, HttpClientAccess>();
+            DependencyService.Register<ILoginService, LoginService>();
+            #endregion
+
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()
