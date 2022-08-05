@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SurveysApp.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,9 +11,17 @@ namespace SurveysApp
 {
     public partial class AppShell : Shell
     {
-        public AppShell()
+        public  AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(LoginPage),
+                typeof(LoginPage));
+
+            Routing.RegisterRoute(nameof(SurveyMainPage),
+                typeof(SurveyMainPage));
+
+            Routing.RegisterRoute(nameof(RegistrationPage),
+                typeof(RegistrationPage));
         }
     }
 }

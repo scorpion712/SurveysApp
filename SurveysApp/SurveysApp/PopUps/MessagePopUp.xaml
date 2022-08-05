@@ -1,0 +1,89 @@
+﻿<popup:PopupPage  xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="SurveysApp.PopUps.MessagePopUp"
+                  xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+                  CloseWhenBackgroundIsClicked="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:InvertedBoolConverter x:Key="InvertedBoolConverter" />
+            <Style x:Key="BtnStyle"
+                   TargetType="Button">
+                <Setter Property="FontSize"
+                        Value="18" />
+                <Setter Property="FontFamily"
+                        Value="Roboto" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
+                <Setter Property="VerticalOptions"
+                        Value="End" />
+                <Setter Property="BackgroundColor"
+                        Value="Transparent" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout HorizontalOptions="Center"
+                 VerticalOptions="Center">
+        <Frame CornerRadius="22"
+               OutlineColor="Transparent"
+               Padding="0">
+            <StackLayout VerticalOptions="StartAndExpand"
+                         HorizontalOptions="CenterAndExpand"
+                         BackgroundColor="White"
+                         WidthRequest="300">
+                <StackLayout VerticalOptions="FillAndExpand"
+                             HorizontalOptions="Center">
+                    <Label x:Name="PopUpTitle"
+                           Margin="0, 15, 0, 5"
+                           Padding="0, 25,0,0"
+                           HorizontalOptions="CenterAndExpand"
+                           Text="Listo!!!!"
+                           FontSize="16"
+                           TextColor="#212121"
+                           FontAttributes="Bold"
+                           FontFamily="Roboto" />
+                    <Label x:Name="PopUpBody"
+                           HorizontalOptions="CenterAndExpand"
+                           Margin="10, 10, 10, 15"
+                           Padding="0,0,0,25"
+                           Text="el producto se añadió al carrito"
+                           FontSize="14"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           TextColor="#212121"
+                           FontAttributes="None"
+                           FontFamily="Roboto" />
+                    <BoxView x:Name="PopUpDivider"
+                             HeightRequest="1"
+                             Color="LightGray"
+                             VerticalOptions="EndAndExpand" />
+                    <Button x:Name="PopUpBtn"
+                            Style="{StaticResource BtnStyle}"
+                            Text="OK"
+                            Clicked="PopUpBtn_Clicked"
+                            TextColor="{StaticResource Primary}"
+                            IsVisible="{Binding TwoButtons, Converter={StaticResource InvertedBoolConverter}}" />
+                    <Grid x:Name="GridBtns"
+                          IsVisible="{Binding TwoButtons}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="PopUpCancelBtn"
+                                Grid.Column="0"
+                                Text="Volve"
+                                Style="{StaticResource BtnStyle}"
+                                TextColor="{StaticResource SystemRedDark}"
+                                Clicked="CancelBtn_Clicked" />
+                        <Button Grid.Column="1"
+                                x:Name="PopUpConfirmBtn"
+                                Text="Confirmar"
+                                Style="{StaticResource BtnStyle}"
+                                TextColor="{StaticResource Primary}"
+                                Clicked="PopUpBtn_Clicked" />
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</popup:PopupPage >
