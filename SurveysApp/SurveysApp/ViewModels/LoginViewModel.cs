@@ -2,14 +2,14 @@
 using Rg.Plugins.Popup.Extensions;
 using SurveysApp.PopUps;
 using SurveysApp.Services.Interfaces;
-using SurveysApp.ViewModels;
+using SurveysApp.Views;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace SurveysApp.Views
+namespace SurveysApp.ViewModels
 {
-    internal class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ViewModelBase
     {
         #region Constructor
         public LoginViewModel()
@@ -33,7 +33,10 @@ namespace SurveysApp.Views
         #region Properties
         public bool IsButtonEnabled
         {
-            get { return Username.Length > 0 && Password.Length > 4;}
+            get {
+                if (Username == null || Password == null) return false;
+                return Username.Length > 0 && Password.Length > 4; 
+            }
         }
         public string Password
         {
@@ -64,7 +67,8 @@ namespace SurveysApp.Views
                 Preferences.Set("user", JsonConvert.SerializeObject(user));
                 Preferences.Set("loggedIn", true);
                 await Shell.Current.GoToAsync($"//{nameof(SurveyMainPage)}");
-            } else
+            }
+            else
             {
                 // show connection error message
                 var animationPopup = new MessagePopUp("Ha ocurrido un error", "Ha ocurrido un error al conectar con el servidor. Revise la conexion a internet e intente nuevamente. Si el problema persiste...", true);
